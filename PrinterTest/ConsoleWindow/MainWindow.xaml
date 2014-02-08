@@ -1,0 +1,139 @@
+﻿<Window x:Class="ConsoleWindow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TPH Test" Height="600" Width="700">
+    <Window.Resources>
+        <Thickness x:Key="DefaultMarging">5,5,5,5</Thickness>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" MaxWidth="300"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel  Orientation="Horizontal">
+            <ComboBox HorizontalAlignment="Left" Width="120" x:Name="_ports" Margin="{DynamicResource DefaultMarging}"/>
+            <Button Content="Open Port" VerticalAlignment="Center" Width="75" Click="onOpenPort" Background="#FFFFF8DA" Margin="{DynamicResource DefaultMarging}"/>
+            <GridSplitter HorizontalAlignment="Stretch" Width="5"/>
+        </StackPanel>
+        <TabControl Grid.Row="1" Grid.Column="0" Name="_tabControl">
+            <TabItem Header="Raw TPH control board">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="Rotor Control" Margin="{DynamicResource DefaultMarging}">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Button Content="Forward" Margin="5,5,10,5" Grid.Row="3" Click="onStepperForwardButtonClicked" Grid.ColumnSpan="4"/>
+                            <TextBox Name ="_steps" TextWrapping="Wrap" Text="1" Margin="{DynamicResource DefaultMarging}"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Steps" VerticalAlignment="Center" Grid.Column="1" Margin="{DynamicResource DefaultMarging}"/>
+                            <TextBox Name="_delay" TextWrapping="Wrap" Text="5" Grid.Row="1" Margin="{DynamicResource DefaultMarging}"/>
+                            <TextBlock TextWrapping="Wrap" Text="Delay(ms)" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="{DynamicResource DefaultMarging}"/>
+                            <GroupBox Grid.Column="2" Header="Step Type" Grid.RowSpan="3" >
+                                <StackPanel>
+                                    <RadioButton Content="Single" Name="_singleStepCheckBox" IsChecked="True"/>
+                                    <RadioButton Content="Double" Name="_doubleStepCheckBox"/>
+                                    <RadioButton Content="Interleave" Name="_interleaveStepCheckBox"/>
+                                    <RadioButton Content="Microstep" Name="_microStepCheckBox"/>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Grid.Column="3" Header="Direction" Grid.RowSpan="3" >
+                                <StackPanel>
+                                    <RadioButton Content="Forward" Name="_forwardCheckBox" IsChecked="True"/>
+                                    <RadioButton Content="Backward" Name="_backwardCheckBox"/>
+                                </StackPanel>
+                            </GroupBox>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Head Control" Grid.Row="1" Margin="{DynamicResource DefaultMarging}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="74"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Head beaming: "/>
+                                <TextBox Text="5" Width="70" Name="_headControlBurnTime"/>
+                                <TextBlock Text="ms"/>
+                            </StackPanel>
+                            <Button Content="Fire" Click="Button_Click" Grid.Column="2"/>
+                            <StackPanel Height="Auto" Grid.Row="1" Grid.ColumnSpan="2" Name="_bitMask" Orientation="Horizontal"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Text printing" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="52*"/>
+                        <ColumnDefinition Width="141*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36*"/>
+                        <RowDefinition Height="41*"/>
+                        <RowDefinition Height="434*"/>
+                    </Grid.RowDefinitions>
+                    <TextBox BorderThickness="5" Name="_textInput" BorderBrush="LightCoral" Width="120" FontFamily="Lucida Console" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14" Grid.RowSpan="3" Grid.Column="1"></TextBox>
+                    <Button Content="Print" Name="_textPrint" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Text_PrintButtonClicked"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Graphics printing">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="334*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="Black" BorderThickness="5"  Grid.Column="1" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,16,0,123" Grid.Row="3">
+                        <Grid Width="256" Height="256" RenderSize="256,256">
+                            <InkCanvas SnapsToDevicePixels="True"  Background="White" Width="256" MoveEnabled="False" Cursor="Cross" Height="256" Name="_incCanvas" ResizeEnabled="False">
+                                <InkCanvas.DefaultDrawingAttributes>
+                                    <DrawingAttributes Color="Black" FitToCurve="False" Height="2" IgnorePressure="True" IsHighlighter="False" StylusTip="Rectangle" StylusTipTransform="Identity" Width="2"/>
+                                </InkCanvas.DefaultDrawingAttributes>
+                            </InkCanvas>
+                        </Grid>
+                    </Border>
+                    <Button Content="Print" Background="Coral" FontSize="24" Width="75" Click="Graphics_PrintButtonClicked" Margin="{DynamicResource DefaultMarging}"/>
+                    <Button Content="Black" Background="Black" Foreground="White" Grid.Row="1" Width="75" Click="Graphics_BlackButtonClicked" Margin="{DynamicResource DefaultMarging}"/>
+                    <Button Content="White" Grid.Row="2" Width="75" Background="White" Click="Graphics_WhiteButtonClicked" Margin="{DynamicResource DefaultMarging}"/>
+                    <Button Content="Gray" Grid.Row="3" Width="75" Background="LightGray" Margin="{DynamicResource DefaultMarging}" Click="Graphics_GrayButtonClicked"/>
+                    <Button Content="Clear" Background="LightGreen" Click="Graphics_ClearButtonClicked" Grid.Row="4" Margin="{DynamicResource DefaultMarging}"/>
+                    <CheckBox Content="Print Gray layer" Name="_graphicsPrintGray" IsChecked="True" Grid.Column="1" HorizontalAlignment="Left" Margin="{DynamicResource DefaultMarging}" VerticalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <GroupBox Grid.Column="1" Header="Log" Grid.RowSpan="2" Margin="{DynamicResource DefaultMarging}">
+            <ScrollViewer>
+                <TextBlock TextWrapping="Wrap" x:Name="_log"/>
+            </ScrollViewer>
+        </GroupBox>
+    </Grid>
+</Window>
