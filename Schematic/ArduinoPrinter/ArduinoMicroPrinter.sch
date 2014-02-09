@@ -6599,7 +6599,7 @@ Source: http://www.jst.com .. eZH.pdf</description>
 </class>
 </classes>
 <parts>
-<part name="PCB2" library="E14_Arduino" deviceset="ARDUINO_NANO" device="">
+<part name="PCB1" library="E14_Arduino" deviceset="ARDUINO_NANO" device="">
 <attribute name="MF" value="ARDUINO"/>
 <attribute name="MPN" value="A000005"/>
 <attribute name="OC_FARNELL" value="1848691"/>
@@ -6627,18 +6627,18 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <part name="P+8" library="supply1" deviceset="+12V" device=""/>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
-<part name="U1" library="74hc04" deviceset="74HC04_HEX_INVERTER" device=""/>
-<part name="C1" library="resistor" deviceset="C-EU" device="075-032X103"/>
-<part name="R1" library="resistor" deviceset="R-EU_" device="0309/12"/>
-<part name="D1" library="diode" deviceset="1N4148" device="DO35-10"/>
+<part name="U1" library="74hc04" deviceset="74HC04_HEX_INVERTER" device="" value="74HC04"/>
+<part name="C1" library="resistor" deviceset="C-EU" device="075-032X103" value="1000n"/>
+<part name="R4" library="resistor" deviceset="R-EU_" device="0309/12" value="100k"/>
+<part name="D1" library="diode" deviceset="1N4148" device="DO35-10" value="КД522Б"/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
-<part name="IC1" library="uln-udn" deviceset="ULN2003A" device="N"/>
+<part name="IC1" library="uln-udn" deviceset="ULN2003A" device="N" value="ULN2003A"/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
-<part name="Q2" library="transistor-pnp" deviceset="TIP30" device=""/>
-<part name="R2" library="resistor" deviceset="R-EU_" device="0207/12"/>
-<part name="R3" library="resistor" deviceset="R-EU_" device="0207/12"/>
-<part name="R4" library="resistor" deviceset="R-EU_" device="0207/12"/>
+<part name="VT1" library="transistor-pnp" deviceset="TIP30" device="" value="КТ853Г"/>
+<part name="R1" library="resistor" deviceset="R-EU_" device="0207/12" value="2k"/>
+<part name="R2" library="resistor" deviceset="R-EU_" device="0207/12" value="2k"/>
+<part name="R3" library="resistor" deviceset="R-EU_" device="0207/12" value="6.8k"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="X1" library="con-jst" deviceset="?4B-ZR" device="B"/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
@@ -6648,7 +6648,7 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <plain>
 </plain>
 <instances>
-<instance part="PCB2" gate="G$1" x="45.72" y="76.2">
+<instance part="PCB1" gate="G$1" x="45.72" y="76.2">
 <attribute name="OC_FARNELL" x="45.72" y="76.2" size="1.778" layer="96" display="off"/>
 <attribute name="MF" x="45.72" y="76.2" size="1.778" layer="96" display="off"/>
 <attribute name="MPN" x="45.72" y="76.2" size="1.778" layer="96" display="off"/>
@@ -6670,16 +6670,16 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <instance part="GND5" gate="1" x="-43.18" y="73.66" rot="R270"/>
 <instance part="U1" gate="G$1" x="109.22" y="119.38"/>
 <instance part="C1" gate="G$1" x="129.54" y="127" rot="R90"/>
-<instance part="R1" gate="G$1" x="147.32" y="116.84" rot="R90"/>
-<instance part="D1" gate="G$1" x="142.24" y="116.84" rot="R90"/>
-<instance part="GND6" gate="1" x="142.24" y="106.68"/>
-<instance part="GND7" gate="1" x="147.32" y="106.68"/>
+<instance part="R4" gate="G$1" x="149.86" y="111.76" rot="R90"/>
+<instance part="D1" gate="G$1" x="142.24" y="109.22" rot="R90"/>
+<instance part="GND6" gate="1" x="142.24" y="101.6"/>
+<instance part="GND7" gate="1" x="149.86" y="101.6"/>
 <instance part="IC1" gate="A" x="119.38" y="55.88"/>
 <instance part="GND8" gate="1" x="96.52" y="45.72" rot="R270"/>
-<instance part="Q2" gate="G$1" x="43.18" y="17.78" rot="MR270"/>
-<instance part="R2" gate="G$1" x="15.24" y="25.4"/>
-<instance part="R3" gate="G$1" x="25.4" y="20.32" rot="R90"/>
-<instance part="R4" gate="G$1" x="66.04" y="25.4"/>
+<instance part="VT1" gate="G$1" x="43.18" y="17.78" rot="MR270"/>
+<instance part="R1" gate="G$1" x="15.24" y="25.4"/>
+<instance part="R2" gate="G$1" x="25.4" y="20.32" rot="R90"/>
+<instance part="R3" gate="G$1" x="66.04" y="25.4"/>
 <instance part="GND9" gate="1" x="81.28" y="25.4" rot="R90"/>
 <instance part="X1" gate="-1" x="-50.8" y="22.86" rot="MR0"/>
 <instance part="X1" gate="-2" x="-50.8" y="20.32" rot="MR0"/>
@@ -6693,7 +6693,7 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <net name="+5V" class="0">
 <segment>
 <pinref part="P+1" gate="1" pin="+5V"/>
-<pinref part="PCB2" gate="G$1" pin="5V"/>
+<pinref part="PCB1" gate="G$1" pin="5V"/>
 <wire x1="55.88" y1="45.72" x2="55.88" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -6710,7 +6710,7 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <net name="GND" class="0">
 <segment>
 <pinref part="GND1" gate="1" pin="GND"/>
-<pinref part="PCB2" gate="G$1" pin="GND."/>
+<pinref part="PCB1" gate="G$1" pin="GND."/>
 <wire x1="60.96" y1="45.72" x2="60.96" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -6719,16 +6719,14 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <wire x1="-48.26" y1="119.38" x2="-33.02" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="-30.48" y1="73.66" x2="-33.02" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="-33.02" y1="73.66" x2="-38.1" y2="73.66" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="73.66" x2="-38.1" y2="76.2" width="0.1524" layer="91"/>
-<pinref part="CON2" gate="G$1" pin="10"/>
-<wire x1="-38.1" y1="76.2" x2="-33.02" y2="76.2" width="0.1524" layer="91"/>
 <pinref part="GND5" gate="1" pin="GND"/>
 <wire x1="-40.64" y1="73.66" x2="-38.1" y2="73.66" width="0.1524" layer="91"/>
-<junction x="-38.1" y="73.66"/>
+<pinref part="CON2" gate="G$1" pin="10"/>
+<wire x1="-33.02" y1="76.2" x2="-38.1" y2="76.2" width="0.1524" layer="91"/>
 <pinref part="CON2" gate="G$1" pin="8"/>
-<junction x="-33.02" y="73.66"/>
+<wire x1="-33.02" y1="73.66" x2="-38.1" y2="73.66" width="0.1524" layer="91"/>
+<junction x="-38.1" y="73.66"/>
 </segment>
 <segment>
 <pinref part="CON2" gate="G$1" pin="7"/>
@@ -6764,12 +6762,12 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <segment>
 <pinref part="D1" gate="G$1" pin="A"/>
 <pinref part="GND6" gate="1" pin="GND"/>
-<wire x1="142.24" y1="114.3" x2="142.24" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="142.24" y1="106.68" x2="142.24" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="R1" gate="G$1" pin="1"/>
+<pinref part="R4" gate="G$1" pin="1"/>
 <pinref part="GND7" gate="1" pin="GND"/>
-<wire x1="147.32" y1="111.76" x2="147.32" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="149.86" y1="106.68" x2="149.86" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="GND8" gate="1" pin="GND"/>
@@ -6786,7 +6784,7 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <junction x="104.14" y="48.26"/>
 </segment>
 <segment>
-<pinref part="R4" gate="G$1" pin="2"/>
+<pinref part="R3" gate="G$1" pin="2"/>
 <wire x1="71.12" y1="25.4" x2="78.74" y2="25.4" width="0.1524" layer="91"/>
 <pinref part="GND9" gate="1" pin="GND"/>
 </segment>
@@ -6888,9 +6886,9 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <junction x="-25.4" y="55.88"/>
 </segment>
 <segment>
-<pinref part="Q2" gate="G$1" pin="C"/>
+<pinref part="VT1" gate="G$1" pin="C"/>
 <wire x1="48.26" y1="15.24" x2="60.96" y2="15.24" width="0.1524" layer="91"/>
-<pinref part="R4" gate="G$1" pin="1"/>
+<pinref part="R3" gate="G$1" pin="1"/>
 <wire x1="60.96" y1="15.24" x2="78.74" y2="15.24" width="0.1524" layer="91"/>
 <wire x1="60.96" y1="25.4" x2="60.96" y2="15.24" width="0.1524" layer="91"/>
 <junction x="60.96" y="15.24"/>
@@ -6904,7 +6902,7 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <label x="-15.24" y="68.58" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="PCB2" gate="G$1" pin="D9"/>
+<pinref part="PCB1" gate="G$1" pin="D9"/>
 <wire x1="35.56" y1="91.44" x2="35.56" y2="93.98" width="0.1524" layer="91"/>
 <label x="35.56" y="93.98" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
@@ -6928,7 +6926,7 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <label x="-50.8" y="78.74" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="PCB2" gate="G$1" pin="D12"/>
+<pinref part="PCB1" gate="G$1" pin="D12"/>
 <wire x1="27.94" y1="91.44" x2="27.94" y2="111.76" width="0.1524" layer="91"/>
 <label x="27.94" y="111.76" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
@@ -6940,14 +6938,14 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <label x="-38.1" y="81.28" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="PCB2" gate="G$1" pin="D11"/>
+<pinref part="PCB1" gate="G$1" pin="D11"/>
 <wire x1="30.48" y1="91.44" x2="30.48" y2="93.98" width="0.1524" layer="91"/>
 <label x="30.48" y="93.98" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
 <net name="M1" class="0">
 <segment>
-<pinref part="PCB2" gate="G$1" pin="D8"/>
+<pinref part="PCB1" gate="G$1" pin="D8"/>
 <wire x1="38.1" y1="91.44" x2="38.1" y2="111.76" width="0.1524" layer="91"/>
 <label x="38.1" y="111.76" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
@@ -6959,7 +6957,7 @@ Source: http://www.jst.com .. eZH.pdf</description>
 </net>
 <net name="M2" class="0">
 <segment>
-<pinref part="PCB2" gate="G$1" pin="D7"/>
+<pinref part="PCB1" gate="G$1" pin="D7"/>
 <wire x1="40.64" y1="91.44" x2="40.64" y2="93.98" width="0.1524" layer="91"/>
 <label x="40.64" y="93.98" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
@@ -6971,7 +6969,7 @@ Source: http://www.jst.com .. eZH.pdf</description>
 </net>
 <net name="M3" class="0">
 <segment>
-<pinref part="PCB2" gate="G$1" pin="D6"/>
+<pinref part="PCB1" gate="G$1" pin="D6"/>
 <wire x1="43.18" y1="91.44" x2="43.18" y2="111.76" width="0.1524" layer="91"/>
 <label x="43.18" y="111.76" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
@@ -6983,7 +6981,7 @@ Source: http://www.jst.com .. eZH.pdf</description>
 </net>
 <net name="M4" class="0">
 <segment>
-<pinref part="PCB2" gate="G$1" pin="D5"/>
+<pinref part="PCB1" gate="G$1" pin="D5"/>
 <wire x1="45.72" y1="91.44" x2="45.72" y2="93.98" width="0.1524" layer="91"/>
 <label x="45.72" y="93.98" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
@@ -6995,7 +6993,7 @@ Source: http://www.jst.com .. eZH.pdf</description>
 </net>
 <net name="PRN-STB-UN" class="0">
 <segment>
-<pinref part="PCB2" gate="G$1" pin="D10"/>
+<pinref part="PCB1" gate="G$1" pin="D10"/>
 <wire x1="33.02" y1="91.44" x2="33.02" y2="111.76" width="0.1524" layer="91"/>
 <label x="33.02" y="111.76" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
@@ -7017,14 +7015,14 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <pinref part="C1" gate="G$1" pin="2"/>
 <pinref part="D1" gate="G$1" pin="C"/>
 <wire x1="134.62" y1="127" x2="142.24" y2="127" width="0.1524" layer="91"/>
-<wire x1="142.24" y1="127" x2="142.24" y2="119.38" width="0.1524" layer="91"/>
-<pinref part="R1" gate="G$1" pin="2"/>
-<wire x1="142.24" y1="127" x2="147.32" y2="127" width="0.1524" layer="91"/>
-<wire x1="147.32" y1="127" x2="147.32" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="142.24" y1="127" x2="142.24" y2="111.76" width="0.1524" layer="91"/>
+<pinref part="R4" gate="G$1" pin="2"/>
+<wire x1="142.24" y1="127" x2="149.86" y2="127" width="0.1524" layer="91"/>
+<wire x1="149.86" y1="127" x2="149.86" y2="116.84" width="0.1524" layer="91"/>
 <junction x="142.24" y="127"/>
-<wire x1="147.32" y1="127" x2="152.4" y2="127" width="0.1524" layer="91"/>
+<wire x1="149.86" y1="127" x2="152.4" y2="127" width="0.1524" layer="91"/>
 <wire x1="152.4" y1="127" x2="152.4" y2="144.78" width="0.1524" layer="91"/>
-<junction x="147.32" y="127"/>
+<junction x="149.86" y="127"/>
 <wire x1="152.4" y1="144.78" x2="63.5" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="63.5" y1="144.78" x2="63.5" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="2A"/>
@@ -7033,7 +7031,7 @@ Source: http://www.jst.com .. eZH.pdf</description>
 </net>
 <net name="ON-12V" class="0">
 <segment>
-<pinref part="PCB2" gate="G$1" pin="D4"/>
+<pinref part="PCB1" gate="G$1" pin="D4"/>
 <wire x1="48.26" y1="91.44" x2="48.26" y2="111.76" width="0.1524" layer="91"/>
 <label x="48.26" y="111.76" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
@@ -7050,17 +7048,17 @@ Source: http://www.jst.com .. eZH.pdf</description>
 <label x="134.62" y="53.34" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="R2" gate="G$1" pin="1"/>
+<pinref part="R1" gate="G$1" pin="1"/>
 <wire x1="10.16" y1="25.4" x2="0" y2="25.4" width="0.1524" layer="91"/>
 <label x="0" y="25.4" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$3" class="0">
 <segment>
+<pinref part="R1" gate="G$1" pin="2"/>
 <pinref part="R2" gate="G$1" pin="2"/>
-<pinref part="R3" gate="G$1" pin="2"/>
 <wire x1="20.32" y1="25.4" x2="25.4" y2="25.4" width="0.1524" layer="91"/>
-<pinref part="Q2" gate="G$1" pin="B"/>
+<pinref part="VT1" gate="G$1" pin="B"/>
 <wire x1="43.18" y1="20.32" x2="43.18" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="25.4" x2="25.4" y2="25.4" width="0.1524" layer="91"/>
 <junction x="25.4" y="25.4"/>
@@ -7068,8 +7066,8 @@ Source: http://www.jst.com .. eZH.pdf</description>
 </net>
 <net name="N$5" class="0">
 <segment>
-<pinref part="R3" gate="G$1" pin="1"/>
-<pinref part="Q2" gate="G$1" pin="E"/>
+<pinref part="R2" gate="G$1" pin="1"/>
+<pinref part="VT1" gate="G$1" pin="E"/>
 <wire x1="25.4" y1="15.24" x2="38.1" y2="15.24" width="0.1524" layer="91"/>
 <junction x="25.4" y="15.24"/>
 <pinref part="X1" gate="-4" pin="1"/>
@@ -7084,6 +7082,9 @@ Source: http://www.jst.com .. eZH.pdf</description>
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="104,1,99.06,132.08,U1,VCC,+5V,,,"/>
+</errors>
 </schematic>
 </drawing>
 </eagle>

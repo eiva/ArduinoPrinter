@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -227,45 +229,7 @@ namespace ConsoleWindow
              PixelFormats.Default);
          resizedImage.Render(drawingVisual);
 
-
-
-         uint[] arrBits = new uint[resizedImage.PixelWidth * resizedImage.PixelHeight];
-         resizedImage.CopyPixels(arrBits, 4 * resizedImage.PixelWidth, 0);
-
-         var black = BitConverter.ToUInt32(new byte[] { 40, 40, 40, 0xFF }, 0);
-         var gray = BitConverter.ToUInt32(new byte[] { 230, 230, 230, 0xFF }, 0);
-         
-         int pos = 0;
-         for (int i = 0; i < 128; i++)
-         {
-            commadNextLine();
-            var bitMaskBlack = new BitArray(128, false);
-            var bitMaskGray = new BitArray(128, false);
-            int countGray = 0;
-            int countBlack = 0;
-            for (int j = 0; j < 128; j++, pos++)
-            {
-               if (arrBits[pos] <= black)
-               {
-                  bitMaskBlack[127 - j] = true;
-                  ++countBlack;
-               }
-               else if (arrBits[pos] <= gray)
-               {
-                  bitMaskGray[127 - j] = true;
-                  ++countGray;
-               }
-            }
-            if (countBlack > 0)
-            {
-               commandPrint(5, bitMaskBlack);
-            }
-            if (countGray > 0 && _graphicsPrintGray.IsChecked.HasValue && _graphicsPrintGray.IsChecked.Value)
-            {
-               commandPrint(2, bitMaskGray);
-            }
-         }
-         commadPageDone();
+         printRenderTarget(resizedImage, _graphicsPrintGray.IsChecked.HasValue && _graphicsPrintGray.IsChecked.Value);
       }
 
       private void Graphics_BlackButtonClicked(object sender, RoutedEventArgs e)
@@ -291,6 +255,91 @@ namespace ConsoleWindow
       private void Text_PrintButtonClicked(object sender, RoutedEventArgs e)
       {
          var text = _textInput.Text;
+         var drawingVisual = new DrawingVisual();
+         var font = new FontFamily(new Uri("pack://application:,,,/Font/"), "./#dotf1");
+         var typeface = new Typeface(font, FontStyles.Normal, FontWeights.Light, FontStretches.Expanded);
+         var formattedText = new FormattedText(text, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, typeface,
+            12, Brushes.Black)
+                             {
+                                MaxTextWidth = 120,
+                                MaxTextHeight = 1000,
+                                MaxLineCount = int.MaxValue,
+                                Trimming = TextTrimming.None,
+                             };
+
+         TextOptions.SetTextFormattingMode(drawingVisual, TextFormattingMode.Display );
+         TextOptions.SetTextRenderingMode(drawingVisual, TextRenderingMode.Grayscale);
+         
+         //RenderOptions.SetClearTypeHint(drawingVisual, ClearTypeHint.Auto);
+         
+         using (var drawingContext = drawingVisual.RenderOpen())
+         {
+            drawingContext.DrawText(formattedText, new Point(0, 0));
+         }
+         var bitmap = new RenderTargetBitmap( 128, (int)(formattedText.Height+1), 96, 96, PixelFormats.Default);
+           bitmap.Render(drawingVisual);
+
+           PngBitmapEncoder png = new PngBitmapEncoder();
+
+           png.Frames.Add(BitmapFrame.Create(bitmap));
+
+           using (Stream stm = File.Create(@"D:\fonttest.png"))
+           {
+
+              png.Save(stm);
+
+           }
+         //printRenderTarget(bitmap, false);
+      }
+
+      private void printRenderTarget(RenderTargetBitmap renderTarget, bool printGray)
+      {
+         if (renderTarget.PixelWidth != 128)
+         {
+            throw new ArgumentOutOfRangeException();
+         }
+
+         uint[] arrBits = new uint[renderTarget.PixelWidth * renderTarget.PixelHeight];
+         renderTarget.CopyPixels(arrBits, 4 * renderTarget.PixelWidth, 0);
+
+         var black = BitConverter.ToUInt32(new byte[] { 40, 40, 40, 0xFF }, 0);
+         var gray = BitConverter.ToUInt32(new byte[] { 230, 230, 230, 0xFF }, 0);
+
+         int pos = 0;
+         for (int i = 0; i < renderTarget.PixelHeight-1; i++)
+         {
+            commadNextLine();
+            var bitMaskBlack = new BitArray(128, false);
+            var bitMaskGray = new BitArray(128, false);
+            int countGray = 0;
+            int countBlack = 0;
+            for (int j = 0; j < 128; j++, pos++)
+            {
+               if (arrBits[pos] == 0)
+               {
+                  // Skip transparent pixel.
+               }
+               else if (arrBits[pos] <= black)
+               {
+                  bitMaskBlack[127 - j] = true;
+                  ++countBlack;
+               }
+               else if (arrBits[pos] <= gray)
+               {
+                  bitMaskGray[127 - j] = true;
+                  ++countGray;
+               }
+            }
+            if (countBlack > 0)
+            {
+               commandPrint(5, bitMaskBlack);
+            }
+            if (countGray > 0 && printGray)
+            {
+               commandPrint(2, bitMaskGray);
+            }
+         }
+         commadPageDone();
       }
    }
 }
