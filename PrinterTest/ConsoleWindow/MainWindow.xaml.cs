@@ -290,7 +290,7 @@ namespace ConsoleWindow
 
       private void Text_PrintButtonClicked(object sender, RoutedEventArgs e)
       {
-
+         var text = _textInput.Text;
       }
    }
 }

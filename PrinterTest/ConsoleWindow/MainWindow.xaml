@@ -17,7 +17,6 @@
         <StackPanel  Orientation="Horizontal">
             <ComboBox HorizontalAlignment="Left" Width="120" x:Name="_ports" Margin="{DynamicResource DefaultMarging}"/>
             <Button Content="Open Port" VerticalAlignment="Center" Width="75" Click="onOpenPort" Background="#FFFFF8DA" Margin="{DynamicResource DefaultMarging}"/>
-            <GridSplitter HorizontalAlignment="Stretch" Width="5"/>
         </StackPanel>
         <TabControl Grid.Row="1" Grid.Column="0" Name="_tabControl">
             <TabItem Header="Raw TPH control board">
@@ -85,16 +84,17 @@
             <TabItem Header="Text printing" >
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="52*"/>
-                        <ColumnDefinition Width="141*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="36*"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="41*"/>
                         <RowDefinition Height="434*"/>
                     </Grid.RowDefinitions>
-                    <TextBox BorderThickness="5" Name="_textInput" BorderBrush="LightCoral" Width="120" FontFamily="Lucida Console" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14" Grid.RowSpan="3" Grid.Column="1"></TextBox>
-                    <Button Content="Print" Name="_textPrint" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Text_PrintButtonClicked"/>
+                    <TextBox BorderThickness="5" Name="_textInput" BorderBrush="LightCoral" Width="120" FontFamily="Lucida Console" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14" Grid.RowSpan="3" Grid.Column="1"/>
+                    <Button Content="Print" Name="_textPrint" HorizontalAlignment="Left" Margin="{DynamicResource DefaultMarging}" Width="75" Click="Text_PrintButtonClicked"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Graphics printing">
