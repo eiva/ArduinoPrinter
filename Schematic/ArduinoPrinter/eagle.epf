@@ -345,8 +345,8 @@ UsedLibrary="74hc04.lbr"
 
 [Win_1]
 Type="Control Panel"
-Loc="62 0 661 399"
-State=1
+Loc="1069 302 1668 701"
+State=2
 Number=0
 
 [Desktop]
