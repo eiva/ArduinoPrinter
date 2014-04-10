@@ -101,6 +101,7 @@
 <layer number="254" name="cooling" color="7" fill="1" visible="yes" active="yes"/>
 </layers>
 <schematic xreflabel="%F%N/%S.%C%R" xrefpart="/%S.%C%R">
+<description>Arduino Thermo Printer</description>
 <libraries>
 <library name="E14_Arduino">
 <packages>
