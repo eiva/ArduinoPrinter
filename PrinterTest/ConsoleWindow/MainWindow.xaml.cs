@@ -60,7 +60,7 @@ namespace ConsoleWindow
          {
             _port = new SerialPort((string)_ports.SelectedItem)
             {
-               BaudRate = 115200
+               BaudRate = 9600
             };
             _port.Open();
             _tabControl.IsEnabled = true;
@@ -136,7 +136,7 @@ namespace ConsoleWindow
 
       private void commadNextLine()
       {
-         var command = String.Format("C S F S 5 5;");
+         var command = String.Format("C S L ");
 
          _port.Write(command);
 
@@ -149,7 +149,7 @@ namespace ConsoleWindow
 
       private void commadPageDone()
       {
-         var command = String.Format("C S F S 250 5;");
+         var command = String.Format("C S P ");
 
          _port.Write(command);
 
@@ -332,7 +332,7 @@ namespace ConsoleWindow
             }
             if (countBlack > 0)
             {
-               commandPrint(5, bitMaskBlack);
+               commandPrint(10, bitMaskBlack);
             }
             if (countGray > 0 && printGray)
             {
