@@ -332,7 +332,7 @@ namespace ConsoleWindow
             }
             if (countBlack > 0)
             {
-               commandPrint(10, bitMaskBlack);
+               commandPrint(15, bitMaskBlack);
             }
             if (countGray > 0 && printGray)
             {
